@@ -1,0 +1,110 @@
+{
+    "schemaVersion": "1.0.0",
+    "class": "Device",
+    "async": true,
+    "label": "Onboard BIG-IP",
+    "controls": {
+        "trace": true,
+        "traceResponse": true
+    },
+    "Common": {
+        "class": "Tenant",
+        "myDns": {
+            "class": "DNS",
+            "nameServers": [
+                "${nameserver}"
+            ],
+            "search": [
+                "f5.com"
+            ]
+        },
+        "myNtp": {
+            "class": "NTP",
+            "servers": [
+                "0.pool.ntp.org","1.pool.ntp.org","2.pool.ntp.org"
+            ],
+            "timezone": "UTC"
+        },
+        "myProvisioning": {
+            "class": "Provision",
+            "ltm": "nominal"
+        },
+        "external": {
+            "class": "VLAN",
+            "tag": 10,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.1",
+                    "tagged": false
+                }
+            ]
+        },
+        "internal": {
+            "class": "VLAN",
+            "tag": 20,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.2",
+                    "tagged": false
+                }
+            ]
+        },
+        "internal-self": {
+            "class": "SelfIp",
+            "address": "${internal_self}/24",
+            "vlan": "internal",
+            "allowService": "all",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "tunnel-self": {
+            "class": "SelfIp",
+            "address": "${tunnel_overlay_address}/16",
+            "vlan": "${tunnel_name}",
+            "allowService": "all",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "external-self": {
+            "class": "SelfIp",
+            "address": "${external_self}/24",
+            "vlan": "external",
+            "allowService": [
+                "tcp:443"
+            ],
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "default": {
+            "class": "Route",
+            "gw": "${default_gateway_address}",
+            "network": "default",
+            "mtu": 9001
+        },
+        "internal-route": {
+            "class": "Route",
+            "gw": "${internal_gateway_address}",
+            "network": "${network_cidr}",
+            "mtu": 9001
+        },        
+        "${tunnel_name}": {
+            "class": "Tunnel",
+            "description": "none",
+            "autoLasthop": "default",
+            "mtu": 0,
+            "tunnelType": "vxlan",
+            "tos": "preserve",
+            "usePmtu": true,
+            "localAddress": "${internal_self}",
+            "remoteAddress": "${internal_remote_self}",
+            "secondaryAddress": "any6",
+            "key": 1,
+            "mode": "bidirectional",
+            "transparent": false,
+            "trafficGroup": "none",
+            "defaultsFrom": "vxlan",
+            "port": 8472,
+            "floodingType": "none",
+            "encapsulationType": "vxlan"
+        }
+    }
+}
