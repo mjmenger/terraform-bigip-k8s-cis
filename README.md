@@ -2,6 +2,9 @@
 
 This is a **very preliminary** module to configure a BIG-IP and Kubernetes cluster to interoperate using [F5's Container Ingress Services](https://clouddocs.f5.com/containers/latest/userguide/kubernetes/). If you want to use this, take some time to peruse the code and familiarize yourself with its many undocumented assumptions.
 
+![simple sketch of assumed deployment](images/simplesolution.png)
+The assumed BIG-IP is in a 3-NIC configuration, spanning management, external, and internal subnets. The internal subnet is synonymous with the kubernetes node subnet allowing the BIG-IP to converse with the nodes of the cluster. The vxlan tunnel and associated selfip make the BIG-IP a member of the cluster subnet and consequently able to converse with the service and pod subnets.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
