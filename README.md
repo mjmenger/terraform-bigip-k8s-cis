@@ -12,7 +12,9 @@ No requirements.
 | Name | Version |
 |------|---------|
 | <a name="provider_external"></a> [external](#provider\_external) | n/a |
+| <a name="provider_local"></a> [local](#provider\_local) | n/a |
 | <a name="provider_null"></a> [null](#provider\_null) | n/a |
+| <a name="provider_random"></a> [random](#provider\_random) | n/a |
 
 ## Modules
 
@@ -25,7 +27,9 @@ No requirements.
 
 | Name | Type |
 |------|------|
+| [local_file.ssh_private_key](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [null_resource.cis_init](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
+| [random_pet.keyname](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) | resource |
 | [external_external.tunnelmac](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external) | data source |
 
 ## Inputs
