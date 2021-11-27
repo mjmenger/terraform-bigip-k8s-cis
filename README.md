@@ -29,20 +29,20 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_bigip_default_gateway_address"></a> [bigip\_default\_gateway\_address](#input\_bigip\_default\_gateway\_address) | n/a | `any` | n/a | yes |
-| <a name="input_bigip_external_address"></a> [bigip\_external\_address](#input\_bigip\_external\_address) | n/a | `any` | n/a | yes |
+| <a name="input_bigip_external_address"></a> [bigip\_external\_address](#input\_bigip\_external\_address) | the address of the BIG-IP external/public NIC | `any` | n/a | yes |
 | <a name="input_bigip_internal_gateway_address"></a> [bigip\_internal\_gateway\_address](#input\_bigip\_internal\_gateway\_address) | n/a | `any` | n/a | yes |
-| <a name="input_bigip_k8s_partition"></a> [bigip\_k8s\_partition](#input\_bigip\_k8s\_partition) | n/a | `any` | n/a | yes |
-| <a name="input_bigip_management_address"></a> [bigip\_management\_address](#input\_bigip\_management\_address) | n/a | `any` | n/a | yes |
-| <a name="input_bigip_password"></a> [bigip\_password](#input\_bigip\_password) | n/a | `any` | n/a | yes |
-| <a name="input_bigip_private_address"></a> [bigip\_private\_address](#input\_bigip\_private\_address) | n/a | `any` | n/a | yes |
-| <a name="input_bigip_tunnel_name"></a> [bigip\_tunnel\_name](#input\_bigip\_tunnel\_name) | n/a | `any` | n/a | yes |
-| <a name="input_bigip_tunnel_overlay_address"></a> [bigip\_tunnel\_overlay\_address](#input\_bigip\_tunnel\_overlay\_address) | variable bigip\_tunnel\_mac{} | `any` | n/a | yes |
-| <a name="input_bigip_username"></a> [bigip\_username](#input\_bigip\_username) | n/a | `any` | n/a | yes |
+| <a name="input_bigip_k8s_partition"></a> [bigip\_k8s\_partition](#input\_bigip\_k8s\_partition) | the partition (AS3 tenant) in which the ingress virtual servers will be created. | `any` | n/a | yes |
+| <a name="input_bigip_management_address"></a> [bigip\_management\_address](#input\_bigip\_management\_address) | the address of the BIG-IP management NIC | `any` | n/a | yes |
+| <a name="input_bigip_password"></a> [bigip\_password](#input\_bigip\_password) | the password to use for authentication when calling the BIG-IP's API endpoints. | `any` | n/a | yes |
+| <a name="input_bigip_private_address"></a> [bigip\_private\_address](#input\_bigip\_private\_address) | the address of the BIG-IP's internal/private NIC on the kubernetes node network | `any` | n/a | yes |
+| <a name="input_bigip_tunnel_name"></a> [bigip\_tunnel\_name](#input\_bigip\_tunnel\_name) | the name of the vxlan tunnel connecting the BIG-IP to the kubernetes pod network | `any` | n/a | yes |
+| <a name="input_bigip_tunnel_overlay_address"></a> [bigip\_tunnel\_overlay\_address](#input\_bigip\_tunnel\_overlay\_address) | the address that the BIG-IP uses over the tunnel to the pod network | `any` | n/a | yes |
+| <a name="input_bigip_username"></a> [bigip\_username](#input\_bigip\_username) | the username to use when calling the BIG-IPs API endpoints. | `any` | n/a | yes |
 | <a name="input_cidr"></a> [cidr](#input\_cidr) | n/a | `any` | n/a | yes |
-| <a name="input_infra_private_key"></a> [infra\_private\_key](#input\_infra\_private\_key) | n/a | `any` | n/a | yes |
-| <a name="input_infra_private_key_path"></a> [infra\_private\_key\_path](#input\_infra\_private\_key\_path) | n/a | `any` | n/a | yes |
-| <a name="input_k8s_controller_address"></a> [k8s\_controller\_address](#input\_k8s\_controller\_address) | n/a | `any` | n/a | yes |
-| <a name="input_k8s_controller_username"></a> [k8s\_controller\_username](#input\_k8s\_controller\_username) | n/a | `any` | n/a | yes |
+| <a name="input_infra_private_key"></a> [infra\_private\_key](#input\_infra\_private\_key) | the value of the private key to connect to the kubernetes controller node | `any` | n/a | yes |
+| <a name="input_infra_private_key_path"></a> [infra\_private\_key\_path](#input\_infra\_private\_key\_path) | the path to the private key file used to connect to the kubernetes controller node | `any` | n/a | yes |
+| <a name="input_k8s_controller_address"></a> [k8s\_controller\_address](#input\_k8s\_controller\_address) | the address of the kubernetes controller node | `any` | n/a | yes |
+| <a name="input_k8s_controller_username"></a> [k8s\_controller\_username](#input\_k8s\_controller\_username) | the username to use to connect to the kubernetes controller | `any` | n/a | yes |
 | <a name="input_k8s_podsubnet"></a> [k8s\_podsubnet](#input\_k8s\_podsubnet) | n/a | `any` | n/a | yes |
 | <a name="input_nameserver"></a> [nameserver](#input\_nameserver) | n/a | `any` | n/a | yes |
 
