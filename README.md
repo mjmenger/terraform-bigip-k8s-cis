@@ -1,3 +1,7 @@
+## Overview
+
+This is a **very preliminary** module to configure a BIG-IP and Kubernetes cluster to interoperate using [F5's Container Ingress Services](https://clouddocs.f5.com/containers/latest/userguide/kubernetes/). If you want to use this, take some time to peruse the code and familiarize yourself with its many undocumented assumptions.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
