@@ -18,7 +18,7 @@ jobs:
     - name: Render terraform docs and push changes back to PR
       uses: terraform-docs/gh-actions@main
       with:
-        working-dir: .,as3,do,sh
+        working-dir: .
         output-file: README.md
         output-method: inject
         git-push: "true"
