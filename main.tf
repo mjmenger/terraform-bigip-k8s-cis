@@ -1,5 +1,9 @@
 locals {
+    infra_private_key_path = format("${path.module}%s.pem",random_pet.keyname.id) 
 
+}
+resource random_pet keyname {
+  length = 3
 }
 variable bigip_username{
   description = "the username to use when calling the BIG-IPs API endpoints."
@@ -42,7 +46,11 @@ variable k8s_controller_address{
 variable k8s_controller_username{
   description = "the username to use to connect to the kubernetes controller"
 }
-
+resource "local_file" "ssh_private_key" {
+    content         = var.infra_private_key
+    filename        = local.infra_private_key_path
+    file_permission = "0600"
+}
 resource null_resource cis_init {
   # copy base manifests for CIS to the controller
   provisioner "file" {
@@ -155,10 +163,9 @@ data external tunnelmac {
     query = {
         bigip_address = var.bigip_management_address
         bigip_user    = var.bigip_username
-        sshkeypath    = var.infra_private_key_path
+        sshkeypath    = local.infra_private_key_path
         tunnel_name   = var.bigip_tunnel_name
     }
-
     depends_on = [
       module.postbuild-config-do
     ]
