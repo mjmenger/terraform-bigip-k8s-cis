@@ -1,24 +1,47 @@
 locals {
 
 }
-variable bigip_username{}
-variable bigip_password{}
-variable bigip_private_address {}
-variable bigip_external_address{}
-variable bigip_management_address{}
-variable bigip_k8s_partition{}
-variable bigip_tunnel_name{}
-#variable bigip_tunnel_mac{}
-variable bigip_tunnel_overlay_address{}
+variable bigip_username{
+  description = "the username to use when calling the BIG-IPs API endpoints."
+}
+variable bigip_password{
+  description = "the password to use for authentication when calling the BIG-IP's API endpoints."
+}
+variable bigip_private_address {
+  description = "the address of the BIG-IP's internal/private NIC on the kubernetes node network"
+}
+variable bigip_external_address{
+  description = "the address of the BIG-IP external/public NIC"
+}
+variable bigip_management_address{
+  description = "the address of the BIG-IP management NIC"
+}
+variable bigip_k8s_partition{
+  description = "the partition (AS3 tenant) in which the ingress virtual servers will be created."
+}
+variable bigip_tunnel_name{
+  description = "the name of the vxlan tunnel connecting the BIG-IP to the kubernetes pod network"
+}
+variable bigip_tunnel_overlay_address{
+  description = "the address that the BIG-IP uses over the tunnel to the pod network"
+}
 variable bigip_default_gateway_address{}
 variable bigip_internal_gateway_address{}
 variable cidr{}
 variable nameserver{}
 variable k8s_podsubnet{}
-variable infra_private_key{}
-variable infra_private_key_path{}
-variable k8s_controller_address{}
-variable k8s_controller_username{}
+variable infra_private_key{
+  description = "the value of the private key to connect to the kubernetes controller node"
+}
+variable infra_private_key_path{
+  description = "the path to the private key file used to connect to the kubernetes controller node"
+}
+variable k8s_controller_address{
+  description = "the address of the kubernetes controller node"
+}
+variable k8s_controller_username{
+  description = "the username to use to connect to the kubernetes controller"
+}
 
 resource null_resource cis_init {
   # copy base manifests for CIS to the controller
