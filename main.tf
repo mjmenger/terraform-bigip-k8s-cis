@@ -100,12 +100,9 @@ resource null_resource cis_init {
     inline = [
       "sleep 10",
       "kubectl create secret generic bigip-login -n kube-system --from-literal=username=${var.bigip_username} --from-literal=password=${var.bigip_password}",
-      "kubectl create serviceaccount bigip-ctlr -n kube-system",
-      "kubectl create clusterrolebinding k8s-bigip-ctlr-clusteradmin --clusterrole=cluster-admin --serviceaccount=kube-system:k8s-bigip-ctlr",
-      "kubectl create -f /home/ubuntu/cismanifests/bigip-ctlr-clusterrole.yaml",
-      "kubectl create -f /home/ubuntu/cismanifests/cis-customresourcedefinition.yaml",
-      "helm repo add f5-stable https://f5networks.github.io/charts/stable",
-      "helm install -f /home/ubuntu/cismanifests/value.yaml f5-stable/f5-bigip-ctlr --generate-name",
+      "kubectl apply -f https://raw.githubusercontent.com/F5Networks/k8s-bigip-ctlr/v2.6.1/docs/config_examples/crd/Install/clusterrole.yml",
+      "kubectl apply -f https://raw.githubusercontent.com/F5Networks/k8s-bigip-ctlr/v2.6.1/docs/config_examples/crd/Install/customresourcedefinitions.yml",
+      "kubectl apply -f /home/ubuntu/cismanifests/f5-cis-deployment.yaml",
       "kubectl create -f /home/ubuntu/cismanifests/bigip-node.yaml"
       ]
   }
